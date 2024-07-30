@@ -70,3 +70,28 @@ const setItem = (key, value) => {
   // For example, using localStorage
   localStorage.setItem(key, value);
 };
+
+export const excludeFromModel = (arr = [], keys = []) => {
+  if (!Array.isArray(arr) || !Array.isArray(keys)) {
+    throw new TypeError('Both parameters should be arrays.');
+  }
+  for (const obj of arr) {
+    if (typeof obj === 'object' && obj !== null) {
+      for (const key of keys) {
+        delete obj[key];
+      }
+    }
+  }
+};
+
+export const isArray(str) {
+  return Object.prototype.toString.call(str) == '[object Array]';
+}
+
+export const withDecimal = (num, decimalPlace = 2, locale = 'en-US') => {
+  const number = parseFloat(num);
+  if (isNaN(number)) {
+    throw new TypeError('The first parameter must be a valid number.');
+  }
+  return number.toLocaleString(locale, { minimumFractionDigits: decimalPlace, maximumFractionDigits: decimalPlace });
+};
