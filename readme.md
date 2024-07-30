@@ -1,3 +1,3 @@
-## Storage helpers sample
+## Helpers sample
 
 --- WIP
